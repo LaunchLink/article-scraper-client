@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "sourceMap": true,
+    "outDir": "build",
+    "module": "CommonJS",
+    "strict": true,
+    "lib": ["es2018", "esnext.asynciterable"],
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "target": "es2022",
+    "jsx": "react-jsx",
+    "resolveJsonModule": true
+  }
+}
