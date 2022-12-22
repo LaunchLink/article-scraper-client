@@ -1,5 +1,3 @@
-import { JSONValue } from "../services/fetcher";
-
 export enum NameUniqueness {
   UNIQUE_WORD = "UNIQUE_WORD",
   ENGLISH_WORD = "ENGLISH_WORD",

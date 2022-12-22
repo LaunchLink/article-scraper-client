@@ -1,4 +1,10 @@
-import { JSONValue } from "../services/fetcher";
+interface ClientMention {
+  sentence: string;
+  client: {
+    name: string;
+    id: string;
+  };
+}
 
 interface Article {
   url: string;
@@ -10,7 +16,7 @@ interface Article {
     name: string;
     domain: string;
   };
-  clientMentions: {}[];
+  clientMentions: ClientMention[];
   createdAt: Date;
 }
 
@@ -23,7 +29,13 @@ export const parseArticles = (data: any): Article[] => {
       synthExtract: d.synthExtract,
       tags: d.tags,
       publication: d.publication,
-      clientMentions: d.clientMentions,
+      clientMentions: d.clientMentions.map((clientMention: any) => ({
+        sentence: clientMention.sentence,
+        client: {
+          name: clientMention.clientEntity.name,
+          id: clientMention.clientEntity.id,
+        },
+      })),
       createdAt: new Date(d.createdAt),
     };
   });
