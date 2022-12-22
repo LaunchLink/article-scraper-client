@@ -8,7 +8,7 @@ export interface CreateClientParams {
   tags: string[];
 }
 
-interface Client {
+export interface Client {
   id: string;
   name: string;
   nameUniqueness: NameUniqueness;

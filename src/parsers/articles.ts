@@ -1,4 +1,4 @@
-interface ClientMention {
+export interface ClientMention {
   sentence: string;
   client: {
     name: string;
@@ -6,7 +6,7 @@ interface ClientMention {
   };
 }
 
-interface Article {
+export interface Article {
   url: string;
   title: string;
   author: string;

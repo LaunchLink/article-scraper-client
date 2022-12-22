@@ -1,23 +1,25 @@
-interface Feed {
+export interface Feed {
   url: string;
   publicationId: string;
 }
 
-interface Publication {
+export interface Publication {
   domain: string;
   name: string;
   feeds: Feed[];
 }
 
-interface ValidatedFeed {
+export interface ValidatedFeed {
   message?: string;
   error?: string;
   url: string;
 }
 
-type PublicationCreate = Publication & { validatedFeeds: ValidatedFeed[] };
+export type PublicationCreate = Publication & {
+  validatedFeeds: ValidatedFeed[];
+};
 
-interface PublicationCreateError {
+export interface PublicationCreateError {
   message: string;
   feeds: {
     url: string;

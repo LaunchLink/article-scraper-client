@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "sourceMap": true,
-    "outDir": "build",
+    "outDir": "lib",
+    "declaration": true,
     "module": "CommonJS",
     "strict": true,
     "lib": ["es2018", "esnext.asynciterable"],
@@ -9,8 +10,8 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es2022",
-    "jsx": "react-jsx",
+    "target": "es5",
     "resolveJsonModule": true
-  }
+  },
+  "include": ["src"]
 }
