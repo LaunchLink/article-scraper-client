@@ -1,5 +1,15 @@
 import { parseArticles } from "./parsers/articles";
-import { parseClients } from "./parsers/clients";
+import {
+  CreateClientParams,
+  parseClient,
+  parseClients,
+} from "./parsers/clients";
+import {
+  CreatePublicationParams,
+  parseCreatePublication,
+  parsePublications,
+  parseUpdatePublication,
+} from "./parsers/publications";
 import { fetcher } from "./services/fetcher";
 
 interface PanopticonClientOptions {
@@ -29,5 +39,54 @@ export class PanopticonClient {
 
   public async getClients() {
     return await fetcher("/client", "GET", parseClients, this.apiKey);
+  }
+
+  public async createClient(data: CreateClientParams) {
+    return await fetcher("/client/create", "POST", parseClient, this.apiKey, {
+      body: JSON.stringify(data),
+    });
+  }
+
+  public async updateClient(id: string, data: Partial<CreateClientParams>) {
+    return await fetcher(
+      `/client/update/${id}`,
+      "PATCH",
+      parseClient,
+      this.apiKey,
+      {
+        body: JSON.stringify(data),
+      }
+    );
+  }
+
+  public async getPublications() {
+    return await fetcher("/publication", "GET", parsePublications, this.apiKey);
+  }
+
+  public async createPublication(data: CreatePublicationParams) {
+    return await fetcher(
+      "/publication/create",
+      "POST",
+      parseCreatePublication,
+      this.apiKey,
+      {
+        body: JSON.stringify(data),
+      }
+    );
+  }
+
+  public async updatePublication(
+    domain: string,
+    data: Partial<CreatePublicationParams>
+  ) {
+    return await fetcher(
+      `/publication/update/${domain}`,
+      "PATCH",
+      parseUpdatePublication,
+      this.apiKey,
+      {
+        body: JSON.stringify(data),
+      }
+    );
   }
 }

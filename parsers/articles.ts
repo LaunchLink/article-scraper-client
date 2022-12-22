@@ -1,3 +1,5 @@
+import { JSONValue } from "../services/fetcher";
+
 interface Article {
   url: string;
   title: string;
@@ -5,23 +7,24 @@ interface Article {
   synthExtract: string;
   tags: string[];
   publication: {
-    id: string;
-    domain: string;
     name: string;
+    domain: string;
   };
   clientMentions: {}[];
   createdAt: Date;
 }
 
-export const parseArticles = (data: any[]): Article[] => {
-  return data.map((d) => ({
-    url: d.url,
-    title: d.title,
-    author: d.author,
-    synthExtract: d.synthExtract,
-    tags: d.tags,
-    publication: d.publication,
-    clientMentions: d.clientMentions,
-    createdAt: new Date(d.createdAt),
-  }));
+export const parseArticles = (data: any): Article[] => {
+  return data.map((d: any) => {
+    return {
+      url: d.url,
+      title: d.title,
+      author: d.author,
+      synthExtract: d.synthExtract,
+      tags: d.tags,
+      publication: d.publication,
+      clientMentions: d.clientMentions,
+      createdAt: new Date(d.createdAt),
+    };
+  });
 };
