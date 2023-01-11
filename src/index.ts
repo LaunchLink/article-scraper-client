@@ -78,7 +78,7 @@ export default class PanopticonClient {
     }
 
     return await fetcher(
-      `/articles/${queryString.toString()}`,
+      `/articles${queryString.toString()}`,
       "GET",
       parseArticles,
       this.apiKey
