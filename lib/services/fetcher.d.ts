@@ -5,4 +5,6 @@ export interface JSONObject {
 }
 export interface JSONArray extends Array<JSONValue> {
 }
-export declare const fetcher: <T>(route: string, method: string, parseResult: (data: JSONValue) => T, apiKey: string, options?: RequestInit) => Promise<T>;
+type HttpMethod = "POST" | "GET" | "PUT" | "PATCH" | "DELETE";
+export declare const fetcher: <T>(route: string, method: HttpMethod, parseResult: (data: JSONValue) => T, apiKey: string, options?: RequestInit) => Promise<T>;
+export {};

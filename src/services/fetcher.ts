@@ -10,9 +10,11 @@ export interface JSONObject {
 
 export interface JSONArray extends Array<JSONValue> {}
 
+type HttpMethod = "POST" | "GET" | "PUT" | "PATCH" | "DELETE";
+
 export const fetcher = async <T>(
   route: string,
-  method: string,
+  method: HttpMethod,
   parseResult: (data: JSONValue) => T,
   apiKey: string,
   options: RequestInit = {}
