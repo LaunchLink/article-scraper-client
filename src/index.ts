@@ -77,7 +77,12 @@ export default class PanopticonClient {
       queryString.append("take", options.take.toFixed());
     }
 
-    return await fetcher("/articles", "GET", parseArticles, this.apiKey);
+    return await fetcher(
+      `/articles/${queryString.toString()}`,
+      "GET",
+      parseArticles,
+      this.apiKey
+    );
   }
 
   /**
