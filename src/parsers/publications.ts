@@ -25,7 +25,7 @@ export interface PublicationCreateError {
     url: string;
     message?: string;
     error?: string;
-  };
+  }[];
 }
 
 export interface CreatePublicationParams {
