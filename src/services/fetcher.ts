@@ -21,6 +21,7 @@ export const fetcher = async <T>(
 ): Promise<T> => {
   const headers = new Headers();
   headers.append("Authorization", apiKey);
+  headers.append("Content-Type", "application/json");
 
   const res = await fetch(BASE_ROUTE + route, {
     method,
