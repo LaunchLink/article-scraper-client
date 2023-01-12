@@ -17,7 +17,7 @@ export const fetcher = async <T>(
   method: HttpMethod,
   parseResult: (data: JSONValue) => T,
   apiKey: string,
-  options: RequestInit = {}
+  body?: object
 ): Promise<T> => {
   const headers = new Headers();
   headers.append("Authorization", apiKey);
@@ -25,7 +25,7 @@ export const fetcher = async <T>(
   const res = await fetch(BASE_ROUTE + route, {
     method,
     headers,
-    ...options,
+    body: body ? JSON.stringify(body) : undefined,
   });
 
   const json: JSONValue = await res.json();

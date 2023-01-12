@@ -108,12 +108,15 @@ export default class PanopticonClient {
    * companies of the same name when loading coverage.
    * @returns The name and a boolean of whether it's unique
    */
-  public async isClientNameUnique(): Promise<IsNameUniqueOutput> {
+  public async isClientNameUnique(name: string): Promise<IsNameUniqueOutput> {
     return await fetcher(
       "/client/is-name-unique",
       "POST",
       parseIsNameUnique,
-      this.apiKey
+      this.apiKey,
+      {
+        name,
+      }
     );
   }
 
@@ -136,9 +139,7 @@ export default class PanopticonClient {
       "POST",
       parseClient,
       this.apiKey,
-      {
-        body: JSON.stringify(client),
-      }
+      client
     );
 
     const competitorResults = await Promise.all(
@@ -177,9 +178,7 @@ export default class PanopticonClient {
       "PATCH",
       parseClient,
       this.apiKey,
-      {
-        body: JSON.stringify(data),
-      }
+      data
     );
   }
 
@@ -226,9 +225,7 @@ export default class PanopticonClient {
       "POST",
       parseCreatePublication,
       this.apiKey,
-      {
-        body: JSON.stringify(data),
-      }
+      data
     );
   }
 
@@ -247,9 +244,7 @@ export default class PanopticonClient {
       "PATCH",
       parseUpdatePublication,
       this.apiKey,
-      {
-        body: JSON.stringify(data),
-      }
+      data
     );
   }
 }

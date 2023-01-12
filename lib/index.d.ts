@@ -40,7 +40,7 @@ export default class PanopticonClient {
      * companies of the same name when loading coverage.
      * @returns The name and a boolean of whether it's unique
      */
-    isClientNameUnique(): Promise<IsNameUniqueOutput>;
+    isClientNameUnique(name: string): Promise<IsNameUniqueOutput>;
     /**
      * Creates a new client and adds it to the user's list of
      * clients. Attach a list of competitors, which can either
