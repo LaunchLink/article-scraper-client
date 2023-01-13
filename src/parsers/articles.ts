@@ -1,11 +1,3 @@
-export interface ClientMention {
-  sentence: string;
-  client: {
-    name: string;
-    id: string;
-  };
-}
-
 export interface Article {
   url: string;
   title: string;
@@ -16,7 +8,6 @@ export interface Article {
     name: string;
     domain: string;
   };
-  clientMentions: ClientMention[];
   createdAt: Date;
 }
 
@@ -29,13 +20,6 @@ export const parseArticles = (data: any): Article[] => {
       synthExtract: d.synthExtract,
       tags: d.tags,
       publication: d.publication,
-      clientMentions: d.clientMentions.map((clientMention: any) => ({
-        sentence: clientMention.sentence,
-        client: {
-          name: clientMention.clientEntity.name,
-          id: clientMention.clientEntity.id,
-        },
-      })),
       createdAt: new Date(d.createdAt),
     };
   });
