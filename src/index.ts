@@ -1,4 +1,9 @@
-import { Article, parseArticles } from "./parsers/articles";
+import {
+  Article,
+  parseArticles,
+  parseSuggestedComment,
+  SuggestedCommentOutput,
+} from "./parsers/articles";
 import {
   Client,
   CreateClientParams,
@@ -32,6 +37,11 @@ interface GetArticlesOptions {
   take?: number;
   skip?: number;
   after?: Date;
+}
+
+interface SuggestCommentParams {
+  articleUrl: string;
+  clientDescription: string;
 }
 
 export default class PanopticonClient {
@@ -82,6 +92,25 @@ export default class PanopticonClient {
       "GET",
       parseArticles,
       this.apiKey
+    );
+  }
+
+  /**
+   * Generates a suggested comment for a client to the article.
+   * @param params
+   * @returns An object with the key `text` as the result
+   */
+  public async suggestArticleComment(
+    params: SuggestCommentParams
+  ): Promise<SuggestedCommentOutput> {
+    return await fetcher(
+      `/articles/${params.articleUrl}/generate-comment`,
+      "POST",
+      parseSuggestedComment,
+      this.apiKey,
+      {
+        clientDescription: params.clientDescription,
+      }
     );
   }
 

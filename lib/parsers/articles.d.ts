@@ -11,3 +11,7 @@ export interface Article {
     createdAt: Date;
 }
 export declare const parseArticles: (data: any) => Article[];
+export interface SuggestedCommentOutput {
+    text: string;
+}
+export declare const parseSuggestedComment: (data: any) => SuggestedCommentOutput;

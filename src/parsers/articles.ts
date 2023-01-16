@@ -24,3 +24,11 @@ export const parseArticles = (data: any): Article[] => {
     };
   });
 };
+
+export interface SuggestedCommentOutput {
+  text: string;
+}
+
+export const parseSuggestedComment = (data: any): SuggestedCommentOutput => {
+  return data as SuggestedCommentOutput;
+};

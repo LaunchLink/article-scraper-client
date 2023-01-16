@@ -1,4 +1,4 @@
-import { Article } from "./parsers/articles";
+import { Article, SuggestedCommentOutput } from "./parsers/articles";
 import { Client, CreateClientParams, IsNameUniqueOutput } from "./parsers/clients";
 import { ClientCoverage, Coverage } from "./parsers/coverage";
 import { CreatePublicationParams, Publication, PublicationCreate, PublicationCreateError } from "./parsers/publications";
@@ -9,6 +9,10 @@ interface GetArticlesOptions {
     take?: number;
     skip?: number;
     after?: Date;
+}
+interface SuggestCommentParams {
+    articleUrl: string;
+    clientDescription: string;
 }
 export default class PanopticonClient {
     private apiKey;
@@ -23,6 +27,12 @@ export default class PanopticonClient {
      * @returns A list of all articles in the system
      */
     getArticles(options: GetArticlesOptions): Promise<Article[]>;
+    /**
+     * Generates a suggested comment for a client to the article.
+     * @param params
+     * @returns An object with the key `text` as the result
+     */
+    suggestArticleComment(params: SuggestCommentParams): Promise<SuggestedCommentOutput>;
     /**
      * Gets all clients, regardless of who they belong to
      * @returns All clients
