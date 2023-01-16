@@ -104,7 +104,9 @@ export default class PanopticonClient {
     params: SuggestCommentParams
   ): Promise<SuggestedCommentOutput> {
     return await fetcher(
-      `/articles/${params.articleUrl}/generate-comment`,
+      `/articles/${Buffer.from(params.articleUrl).toString(
+        "base64"
+      )}/generate-comment`,
       "POST",
       parseSuggestedComment,
       this.apiKey,
